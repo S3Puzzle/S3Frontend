@@ -15,7 +15,7 @@ export default {
       }
   },
   mounted() {
-    axios.get('http://localhost:8082/demo/all')
+    axios.get('http://localhost:8082/leaderboard/all')
         .then((response)=>{
             this.results = response.data
             console.log(response.data)

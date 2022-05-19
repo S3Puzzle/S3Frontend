@@ -2,23 +2,20 @@
   <div>
     <button @click="postresults">post results</button>
   </div>
+  <p>Hi {{naam}}</p>
 </template>
 
 <script>
 import axios from 'axios'
 export default {
   name: 'PostResult',
-  data(){
-      return{
-          form: {
-                name: 'Cas',
-                score: '5'
-            }
-      }
+  props: {
+    naam: String,
+    email: String
   },
   methods: {  
     postresults() {
-        axios.post('http://localhost:8082/demo/add', this.form,)
+        axios.post('http://localhost:8082/leaderboard/add', {name: this.naam, score: '6' },)
     }
   }
 }
