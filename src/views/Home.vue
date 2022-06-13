@@ -1,11 +1,12 @@
 <template>
   <div class="home">
   home
-  <div>
 <input v-model="name" placeholder="edit me">
     <button @click="googleLogin">sign in</button>
-  </div>
+    <button @click="googleOut">sign out</button>
+  <div v-if="userstate==true">
   <PostResult :naam=giveName(user.email) :email=user.email />
+  </div>
   </div>
 </template>
 
@@ -22,6 +23,7 @@ export default {
        return {
            user: null,
            username:null,
+           userstate:false,
      };
  },
     created() {
@@ -29,6 +31,12 @@ export default {
            if (user) {
                this.user = user;
            }
+        if (user) {  
+          this.userstate = true; 
+          }
+        else { 
+          this.userstate = false; 
+          } 
        });
    },
   methods:{
@@ -36,9 +44,19 @@ export default {
       const provider = new firebase.auth.GoogleAuthProvider;
       firebase.auth().signInWithPopup(provider).then(() => {
         alert("signed in");
+        this.userstate = true; 
       }).catch(err => {
         console.log(err);
       });
+    },
+    googleOut(){
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          alert("Successfully signed out.");
+          this.userstate = false; 
+        });
     },
     giveName(usermail){
       axios.get('http://localhost:8083/name/get', { params: { email: usermail } })
