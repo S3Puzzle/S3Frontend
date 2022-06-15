@@ -3,6 +3,7 @@
     <button @click="postresults">post results</button>
   </div>
   <p>Hi {{naam}}</p>
+  <input v-model="name" placeholder= Naam>
 </template>
 
 <script>

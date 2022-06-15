@@ -1,12 +1,13 @@
 <template>
   <div class="home">
-  home
-<input v-model="name" placeholder="edit me">
-    <button @click="googleLogin">sign in</button>
-    <button @click="googleOut">sign out</button>
-  <div v-if="userstate==true">
-  <PostResult :naam=giveName(user.email) :email=user.email />
-  </div>
+    <div v-if="userstate==false">
+      <button @click="googleLogin">sign in</button>
+    </div>
+    <div v-if="userstate==true">
+      <button @click="googleOut">sign out</button>
+      <PostResult :naam=giveName(user.email) :email=user.email />
+    </div>
+
   </div>
 </template>
 
