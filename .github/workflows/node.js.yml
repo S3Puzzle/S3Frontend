@@ -41,4 +41,4 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: casesselink/s3puzzle:latest
+        tags: casesselink/s3frontend:latest
