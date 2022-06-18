@@ -2,6 +2,11 @@
   <div v-for="result in results" :key="result.id">
     <p>{{result.name}},{{result.score}}</p>
   </div>
+  <h1>Total</h1>
+  <div v-for="total in totals" :key="total.name">
+        <p>{{total.name}},{{total.scoreTotal}}</p>
+  </div>
+
 </template>
 
 <script>
@@ -12,6 +17,7 @@ export default {
       return{
           posts:[],
           results:[],
+          totals:[],
       }
   },
   mounted() {
@@ -23,6 +29,16 @@ export default {
         .catch((error)=>{
             console.log(error)
         })
+
+    axios.get('http://localhost:8082/leaderboard/total')
+        .then((response)=>{
+            this.totals = response.data
+            console.log(response.data)
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+
      }
   }
 </script>
